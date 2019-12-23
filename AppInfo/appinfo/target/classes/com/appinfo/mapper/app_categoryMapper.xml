@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.appinfo.mapper.app_categoryMapper" >
+  <resultMap id="BaseResultMap" type="com.appinfo.entity.app_category" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="categoryCode" property="categorycode" jdbcType="VARCHAR" />
+    <result column="categoryName" property="categoryname" jdbcType="VARCHAR" />
+    <result column="parentId" property="parentid" jdbcType="BIGINT" />
+    <result column="createdBy" property="createdby" jdbcType="BIGINT" />
+    <result column="creationTime" property="creationtime" jdbcType="TIMESTAMP" />
+    <result column="modifyBy" property="modifyby" jdbcType="BIGINT" />
+    <result column="modifyDate" property="modifydate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, categoryCode, categoryName, parentId, createdBy, creationTime, modifyBy, modifyDate
+  </sql>
+<select id="getCategoryLevel1" resultType="com.appinfo.entity.app_category">
+  select * from app_category where parentId=0
+</select>
+  <select id="getCategoryLevel2" resultType="com.appinfo.entity.app_category">
+  select * from app_category  where parentId=#{cid}
+</select>
+  <select id="getCategoryLevel3" resultType="com.appinfo.entity.app_category">
+  select * from app_category  where parentId=#{cid}
+</select>
+</mapper>
